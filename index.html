@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Dolls x Balonmano Nava - Amuletos de Campeones</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #EF1E26;
+            --dark-black: #0F0F0F;
+            --clean-white: #FFFFFF;
+            --gray-light: #F5F5F5;
+            --accent-gold: #FFB81C;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--clean-white);
+            color: var(--dark-black);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* TIPOGRAFÍA */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        /* FONDO DINÁMICO CON ELEMENTOS FLOTANTES */
+        .dynamic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--clean-white) 0%, #FAFAFA 100%);
+        }
+
+        .floating-ball {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            will-change: transform;
+        }
+
+        .ball-1 {
+            width: 300px;
+            height: 300px;
+            background-color: var(--primary-red);
+            top: -100px;
+            right: -50px;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .ball-2 {
+            width: 200px;
+            height: 200px;
+            background-color: var(--dark-black);
+            bottom: 100px;
+            left: -80px;
+            animation: float 20s infinite ease-in-out 2s;
+        }
+
+        .ball-3 {
+            width: 250px;
+            height: 250px;
+            background-color: var(--primary-red);
+            top: 50%;
+            right: 5%;
+            animation: float 18s infinite ease-in-out 4s;
+        }
+
+        /* ELEMENTOS TEMÁTICOS DE BALONMANO */
+        .floating-handball {
+            position: absolute;
+            font-size: 48px;
+            opacity: 0.15;
+            animation: float-rotate 20s infinite ease-in-out;
+            will-change: transform;
+        }
+
+        .handball-1 {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .handball-2 {
+            top: 60%;
+            right: 8%;
+            animation-delay: 2s;
+            animation-duration: 25s;
+        }
+
+        .handball-3 {
+            top: 30%;
+            right: 20%;
+            animation-delay: 4s;
+            animation-duration: 22s;
+        }
+
+        .handball-4 {
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 6s;
+            animation-duration: 18s;
+        }
+
+        .handball-5 {
+            top: 70%;
+            left: 60%;
+            animation-delay: 3s;
+            animation-duration: 24s;
+        }
+
+        /* FORMA DE ASTURIAS - SILUETA */
+        .asturias-shape {
+            position: absolute;
+            opacity: 0.05;
+            will-change: transform;
+        }
+
+        .asturias-1 {
+            width: 200px;
+            height: 180px;
+            top: 20%;
+            right: 5%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180"><path d="M50,40 Q70,30 90,35 L110,50 Q120,60 115,75 L100,90 Q85,95 70,90 L55,80 Q45,70 50,60 Z" fill="currentColor"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: var(--dark-black);
+            animation: float-slow 30s infinite ease-in-out;
+        }
+
+        .asturias-2 {
+            width: 150px;
+            height: 135px;
+            bottom: 20%;
+            left: 5%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180"><path d="M50,40 Q70,30 90,35 L110,50 Q120,60 115,75 L100,90 Q85,95 70,90 L55,80 Q45,70 50,60 Z" fill="currentColor"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: var(--primary-red);
+            animation: float-slow 35s infinite ease-in-out;
+            animation-delay: 2s;
+        }
+
+        /* SÍMBOLOS ABSTRACTOS DE VICTORIA */
+        .victory-symbol {
+            position: absolute;
+            font-size: 32px;
+            opacity: 0.12;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .victory-1 {
+            top: 10%;
+            left: 5%;
+            animation-delay: 1s;
+        }
+
+        .victory-2 {
+            bottom: 25%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .victory-3 {
+            top: 55%;
+            left: 45%;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) translateX(0px);
+            }
+
+            50% {
+                transform: translateY(-30px) translateX(10px);
+            }
+        }
+
+        @keyframes float-rotate {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-40px) rotate(180deg);
+            }
+        }
+
+        @keyframes float-slow {
+
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.05);
+            }
+        }
+
+        @keyframes rotate-slow {
+            0% {
+                transform: rotate(45deg);
+            }
+
+            100% {
+                transform: rotate(405deg);
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.06;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.1;
+            }
+        }
+
+        /* HEADER & NAVEGACIÓN */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 40;
+            border-bottom: 1px solid rgba(239, 30, 38, 0.1);
+        }
+
+        .header-container {
+            position: relative;
+            z-index: 50;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary-red);
+            letter-spacing: -0.02em;
+            z-index: 50;
+        }
+
+        .logo span {
+            color: var(--dark-black);
+        }
+
+        /* MENÚ HAMBURGUESA */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 50;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background-color: var(--dark-black);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* NAVEGACIÓN DESKTOP */
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--dark-black);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* MENÚ MOBILE FULL-SCREEN */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--clean-white) 0%, var(--gray-light) 100%);
+            z-index: 40;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            animation: slideInMenu 0.4s ease-out;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--dark-black);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary-red);
+        }
+
+        @keyframes slideInMenu {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* MAIN CONTENT */
+        main {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+            overflow: hidden;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--dark-black) 0%, var(--primary-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 4vw, 20px);
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: white;
+            box-shadow: 0 10px 30px rgba(239, 30, 38, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(239, 30, 38, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--dark-black);
+            border: 2px solid var(--dark-black);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--dark-black);
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* SECCIÓN DE PRODUCTOS */
+        .products {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(40px, 6vw, 56px);
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--dark-black);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #E0E0E0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .product-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .product-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .product-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(239, 30, 38, 0.1) 0%, transparent 80%);
+            transition: left 0.4s ease;
+            pointer-events: none;
+        }
+
+        .product-card:hover {
+            transform: translateY(-16px);
+            box-shadow: 0 30px 60px rgba(239, 30, 38, 0.2);
+            border-color: var(--primary-red);
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-icon {
+            width: 100%;
+            height: 280px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary-red), #FF6B6B);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(239, 30, 38, 0.2);
+        }
+
+        .product-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            padding: 16px;
+        }
+
+        .product-icon.placeholder {
+            background: linear-gradient(135deg, var(--primary-red), #FF6B6B);
+            color: white;
+        }
+
+        /* MODAL POPUP PARA FOTOS */
+        .photo-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .photo-modal.active {
+            display: flex;
+        }
+
+        .photo-modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        .photo-modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 16px;
+        }
+
+        .photo-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-red);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .photo-modal-close:hover {
+            background-color: var(--dark-black);
+            transform: rotate(90deg);
+        }
+
+        .btn-view-photo {
+            width: 100%;
+            padding: 12px;
+            margin-top: 16px;
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-view-photo:hover {
+            background-color: var(--dark-black);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(239, 30, 38, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .product-card h3 {
+            font-size: clamp(20px, 3vw, 28px);
+            margin-bottom: 12px;
+            color: var(--dark-black);
+        }
+
+        .product-card .badge {
+            display: inline-block;
+            background-color: rgba(239, 30, 38, 0.1);
+            color: var(--primary-red);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .price-section {
+            background-color: var(--gray-light);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 20px 0;
+        }
+
+        .price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-red);
+            margin: 10px 0;
+        }
+
+        .price-note {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .product-specs {
+            background-color: #F9F9F9;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            background: linear-gradient(135deg, var(--dark-black) 0%, #2A2A2A 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(239, 30, 38, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact h2 {
+            font-size: clamp(36px, 5vw, 48px);
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-contact-white {
+            background-color: white;
+            color: var(--dark-black);
+            padding: 16px 36px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 2px solid white;
+        }
+
+        .btn-contact-white:hover {
+            background-color: transparent;
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--dark-black);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 13px;
+            border-top: 1px solid rgba(239, 30, 38, 0.2);
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* RESPONSIVE - TABLET */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 80px 20px 60px;
+            }
+
+            .products {
+                padding: 80px 20px;
+            }
+
+            .products-grid {
+                gap: 24px;
+            }
+        }
+
+        /* RESPONSIVE - MOBILE */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .btn-contact-white {
+                width: 100%;
+            }
+
+            .mobile-menu a {
+                font-size: 24px;
+            }
+
+            .dynamic-bg {
+                display: none;
+            }
+
+            .geometric-element {
+                display: none;
+            }
+        }
+
+        /* SCROLL ANIMATIONS */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SMOOTH PARALLAX EFFECT */
+        .parallax-section {
+            position: relative;
+        }
+
+        /* GLOW EFFECT PARA ELEMENTOS */
+        .glow-text {
+            text-shadow: 0 0 20px rgba(239, 30, 38, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- FONDO DINÁMICO -->
+    <div class="dynamic-bg">
+        <!-- BALONES DE FONDO (BLUR) -->
+        <div class="floating-ball ball-1"></div>
+        <div class="floating-ball ball-2"></div>
+        <div class="floating-ball ball-3"></div>
+
+        <!-- BALONES DE BALONMANO FLOTANTES (TEMÁTICOS) -->
+        <div class="floating-handball handball-1">🏐</div>
+        <div class="floating-handball handball-2">🏐</div>
+        <div class="floating-handball handball-3">🏐</div>
+        <div class="floating-handball handball-4">🏐</div>
+        <div class="floating-handball handball-5">🏐</div>
+
+        <!-- SÍMBOLOS DE VICTORIA -->
+        <div class="victory-symbol victory-1">⭐</div>
+        <div class="victory-symbol victory-2">⭐</div>
+        <div class="victory-symbol victory-3">⭐</div>
+
+        <!-- SILUETAS DE ASTURIAS -->
+        <div class="asturias-shape asturias-1" title="Asturias"></div>
+        <div class="asturias-shape asturias-2" title="Asturias"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Lucky<span>Dolls</span> <span
+                    style="font-size: 12px; letter-spacing: 0.5px; font-weight: 600; color: #999; margin-left: 8px;">x
+                    CLUB BALONMANO NAVA</span></div>
+            <nav>
+                <a href="#inicio">Inicio</a>
+                <a href="#productos">Productos</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENÚ MOBILE -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero" id="inicio">
+            <div class="hero-content">
+                <h1 class="glow-text">Lucky Dolls <span style="color: var(--primary-red);">x</span> <span
+                        style="color: var(--dark-black);">CLUB BALONMANO NAVA</span></h1>
+                <p style="font-size: clamp(14px, 3vw, 18px); margin-bottom: 10px;">Amuletos Oficiales de Balonmano Nava
+                </p>
+                <p>Los Guardianes del Éxito Pintados a Mano por Maestros Artesanos</p>
+                <div class="cta-buttons">
+                    <a href="#productos" class="btn btn-primary">Ver Colección</a>
+                    <a href="#contacto" class="btn btn-secondary">Solicitar Catálogo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE PRODUCTOS -->
+        <section class="products parallax-section" id="productos">
+            <h2 class="section-title">La Colección Lucky Dolls NAVA</h2>
+            <div
+                style="text-align: center; max-width: 700px; margin: 0 auto 60px; color: #666; font-size: 16px; line-height: 1.8;">
+                <p>Cada pieza es un talismán de victoria, creado especialmente para llevar la energía del
+                    <strong>Balonmano Nava</strong> a tu espacio. Fabricadas en poliresina de alta calidad y pintadas a
+                    mano por artesanos especializados.</p>
+            </div>
+            <div class="products-grid">
+                <!-- PRODUCTO 1: Lucky Doll 2M -->
+                <div class="product-card scroll-fade">
+                    <div class="product-icon">
+                        <img src="./assets/Design04-2M.png" alt="Lucky Doll 2M">
+                    </div>
+                    <div class="badge">Exclusiva</div>
+                    <h3>Lucky Doll 2M</h3>
+                    <p class="product-description">El Guardián Mayor de NAVA. Una escultura monumental que representa el
+                        espíritu inquebrantable del club. Perfecta para estadios, sedes y espacios de prominencia.</p>
+                    <div class="price-section">
+                        <div style="font-size: 13px; color: #999;">Precio por unidad</div>
+                        <div class="price">5.900€</div>
+                        <div class="price-note">+ IVA</div>
+                    </div>
+                    <div class="product-specs">
+                        <strong>Material:</strong> Poliresina<br>
+                        <strong>Altura:</strong> 2 Metros<br>
+                        <strong>Acabado:</strong> Pintura a Mano<br>
+                        <strong>Estado:</strong> Edición Limitada
+                    </div>
+                    <button class="btn-view-photo"
+                        onclick="openPhotoModal('./assets/Design04-2M.png', 'Lucky Doll 2M')">👁️ Ver Foto</button>
+                </div>
+
+                <!-- MODAL PARA LUCKY DOLL 2M -->
+                <div class="photo-modal" id="modal-2m">
+                    <div class="photo-modal-content">
+                        <button class="photo-modal-close" onclick="closePhotoModal('modal-2m')">×</button>
+                        <img src="./assets/Design04-2M.png" alt="Lucky Doll 2M" class="photo-modal-image">
+                    </div>
+                </div>
+
+                <!-- PRODUCTO 2: Lucky Doll 14cm - UNIFICADO -->
+                <div class="product-card scroll-fade">
+                    <div class="product-icon">
+                        <img src="./assets/Design04-14cm.png" alt="Lucky Doll 14cm">
+                    </div>
+                    <div class="badge">Flexible</div>
+                    <h3>Lucky Doll 14cm</h3>
+                    <p class="product-description">Los Guardianes Personales de NAVA. Edición portátil ideal para
+                        aficionados, jugadores, sponsors y regalos corporativos. Lleva la suerte a donde vayas.</p>
+
+                    <!-- TABLA DE PRECIOS POR VOLUMEN -->
+                    <div style="margin: 20px 0;">
+                        <div
+                            style="font-size: 12px; color: #999; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600;">
+                            Tarifa de Volumen</div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <!-- Opción 1 -->
+                            <div style="background: linear-gradient(135deg, rgba(239, 30, 38, 0.05), rgba(239, 30, 38, 0.1)); border: 2px solid rgba(239, 30, 38, 0.2); border-radius: 12px; padding: 14px; cursor: pointer; transition: all 0.3s ease;"
+                                class="price-option"
+                                onmouseover="this.style.borderColor='var(--primary-red)'; this.style.backgroundColor='rgba(239, 30, 38, 0.15)'"
+                                onmouseout="this.style.borderColor='rgba(239, 30, 38, 0.2)'; this.style.backgroundColor='linear-gradient(135deg, rgba(239, 30, 38, 0.05), rgba(239, 30, 38, 0.1))'">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-weight: 700; color: var(--dark-black); font-size: 14px;">250
+                                            unidades</div>
+                                        <div style="font-size: 12px; color: #666; margin-top: 2px;">Cantidad Mínima
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div
+                                            style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; color: var(--primary-red);">
+                                            7,50€</div>
+                                        <div style="font-size: 11px; color: #999;">por unidad</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opción 2 -->
+                            <div style="background: linear-gradient(135deg, rgba(239, 30, 38, 0.1), rgba(239, 30, 38, 0.15)); border: 2px solid var(--primary-red); border-radius: 12px; padding: 14px; cursor: pointer; transition: all 0.3s ease; position: relative;"
+                                class="price-option"
+                                onmouseover="this.style.boxShadow='0 0 20px rgba(239, 30, 38, 0.3)'"
+                                onmouseout="this.style.boxShadow='none'">
+                                <div
+                                    style="position: absolute; top: -10px; right: 16px; background: var(--primary-red); color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;">
+                                    Mejor Precio</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-weight: 700; color: var(--dark-black); font-size: 14px;">500
+                                            unidades</div>
+                                        <div style="font-size: 12px; color: #666; margin-top: 2px;">Volumen Premium
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div
+                                            style="font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 800; color: var(--primary-red);">
+                                            5,50€</div>
+                                        <div style="font-size: 11px; color: #999;">por unidad</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AHORRO CALCULADO -->
+                    <div
+                        style="background-color: #F0F0F0; border-radius: 12px; padding: 12px; margin: 16px 0; text-align: center;">
+                        <div style="font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Ahorro con 500 unidades</div>
+                        <div
+                            style="font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; color: var(--primary-red); margin-top: 4px;">
+                            1.000€ <span style="font-size: 12px; color: #666;">vs 250 unid.</span></div>
+                    </div>
+
+                    <div class="product-specs">
+                        <strong>Material:</strong> Poliresina<br>
+                        <strong>Altura:</strong> 14 cm<br>
+                        <strong>Acabado:</strong> Pintura a Mano<br>
+                        <strong>Mínimo:</strong> 250 unidades
+                    </div>
+                    <button class="btn-view-photo"
+                        onclick="openPhotoModal('./assets/Design04-14CM.png', 'Lucky Doll 14cm')">👁️ Ver Foto</button>
+                </div>
+
+                <!-- MODAL PARA LUCKY DOLL 14CM -->
+                <div class="photo-modal" id="modal-14cm">
+                    <div class="photo-modal-content">
+                        <button class="photo-modal-close" onclick="closePhotoModal('modal-14cm')">×</button>
+                        <img src="./assets/Design04-14CM.png" alt="Lucky Doll 14cm" class="photo-modal-image">
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFORMACIÓN ADICIONAL -->
+            <div
+                style="background-color: #F9F9F9; border-radius: 16px; padding: 40px; text-align: center; margin-top: 60px; border-left: 5px solid var(--primary-red);">
+                <h3 style="font-size: 24px; margin-bottom: 16px; color: var(--primary-red);">🏐 Patrimonio de NAVA</h3>
+                <p style="color: #666; line-height: 1.8; max-width: 600px; margin: 0 auto;">
+                    Lucky Dolls x Club Balonmano Nava representa una <strong>alianza exclusiva</strong> entre artesanía de
+                    lujo y pasión deportiva. Cada pieza es certificada y trazable, convirtiéndose en un
+                    <strong>coleccionable de valor</strong> para aficionados del club y amantes del balonmano asturiano.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE CONTACTO -->
+        <section class="contact" id="contacto">
+            <div class="contact-content">
+                <h2>Únete a la Familia NAVA</h2>
+                <p>Adquiere tus Lucky Dolls y sé parte de la leyenda del Balonmano Nava. Contáctanos para pedidos,
+                    consultas corporativas y oportunidades de sponsoring.</p>
+                <div class="contact-buttons">
+                    <a target="_blank" href="mailto:direccion.general@merchandream.es" class="btn-contact-white">📧 Enviar Email</a>
+                    <a href="https://wa.me/34605195744?text=Hola,%20me%20interesa%20comprar%20Lucky%20Dolls%20x%20Balonmano%20Nava"
+                        target="_blank" class="btn-contact-white">💬 WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Lucky Dolls x Club Balonmano Nava. Todos los derechos reservados.</p>
+        <p>Amuletos oficiales de poliresina pintados a mano. Orgullo de Asturias. 🏐</p>
+    </footer>
+
+    <script>
+        // HAMBURGER MENU TOGGLE
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = mobileMenu.querySelectorAll('a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer click en un link
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // SCROLL ANIMATIONS - Detectar elementos en viewport
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-fade').forEach(element => {
+            observer.observe(element);
+        });
+
+        // SMOOTH SCROLL OFFSET PARA HEADER FIJO
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = 80;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // PARALLAX SIMPLE AL SCROLL
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const dynamicBg = document.querySelector('.dynamic-bg');
+            if (dynamicBg) {
+                dynamicBg.style.transform = `translateY(${scrollY * 0.5}px)`;
+            }
+        });
+
+        // FUNCIONES PARA MODAL DE FOTOS
+        function openPhotoModal(imageSrc, altText) {
+            const modalId = imageSrc.includes('2M') ? 'modal-2m' : 'modal-14cm';
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closePhotoModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Cerrar modal al hacer click fuera
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('photo-modal')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.photo-modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
